@@ -7,12 +7,17 @@ import Database from "better-sqlite3";
 import { SignJWT, jwtVerify } from "jose";
 import { randomUUID, createHash } from "node:crypto";
 import { sendLicenseEmail } from "./email.js";
+import { sendStarterPackEmail } from "./starterpack.js";
 
 const db = new Database("data/licenses.db");
 db.exec(`CREATE TABLE IF NOT EXISTS licenses (
   id TEXT PRIMARY KEY, email TEXT NOT NULL, license_key TEXT UNIQUE NOT NULL,
   price_id TEXT, tier TEXT, status TEXT DEFAULT 'active',
   stripe_customer_id TEXT, created_at TEXT DEFAULT (datetime('now'))
+)`);
+db.exec(`CREATE TABLE IF NOT EXISTS subscribers (
+  email TEXT PRIMARY KEY, source TEXT, status TEXT DEFAULT 'active',
+  created_at TEXT DEFAULT (datetime('now'))
 )`);
 
 const TIER_BY_PRICE = {
@@ -209,6 +214,26 @@ app.get("/admin/dashboard", async (_req, res) => {
       stripeConnected: !!stripe,
     });
   } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// ─── EMAIL CAPTURE / LEAD MAGNET (per EMAIL_CAPTURE_SPEC.md) ───
+// POST /v1/subscribe { email, source } → store + deliver Aurora Starter Pack.
+app.post("/v1/subscribe", async (req, res) => {
+  const { email, source } = req.body || {};
+  const clean = email?.toLowerCase()?.trim();
+  if (!clean || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(clean)) {
+    return res.status(400).json({ error: "invalid_email" });
+  }
+  db.prepare(`INSERT OR IGNORE INTO subscribers (email, source) VALUES (?, ?)`)
+    .run(clean, source || "unknown");
+  try { await sendStarterPackEmail(clean); }
+  catch (e) { console.error("[subscribe] email failed:", e.message); }
+  res.json({ ok: true, message: "check your inbox for the Aurora OS Starter Pack" });
+});
+
+app.get("/admin/subscribers", (_req, res) => {
+  const rows = db.prepare(`SELECT email, source, created_at FROM subscribers WHERE status = 'active' ORDER BY created_at DESC`).all();
+  res.json({ count: rows.length, subscribers: rows });
 });
 
 app.listen(8787, () => console.log("revenue-engine on :8787"));
