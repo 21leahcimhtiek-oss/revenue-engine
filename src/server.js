@@ -158,4 +158,57 @@ app.get("/v1/me", async (req, res) => {
   }
 });
 
+// ─── ADMIN DASHBOARD (Stripe financial platform, phase 1) ───
+// GET /admin/dashboard — revenue + license metrics in one JSON payload.
+app.get("/admin/dashboard", async (_req, res) => {
+  try {
+    // License stats (SQLite — source of truth for fulfilled orders)
+    const byTier = db.prepare(
+      `SELECT tier, COUNT(*) AS count FROM licenses WHERE status = 'active' GROUP BY tier`
+    ).all();
+    const totalLicenses = db.prepare(`SELECT COUNT(*) AS c FROM licenses`).get().c;
+    const activeLicenses = db.prepare(
+      `SELECT COUNT(*) AS c FROM licenses WHERE status = 'active'`
+    ).get().c;
+    const revoked = db.prepare(
+      `SELECT COUNT(*) AS c FROM licenses WHERE status = 'revoked'`
+    ).get().c;
+    const last7d = db.prepare(
+      `SELECT COUNT(*) AS c FROM licenses WHERE created_at >= datetime('now', '-7 days')`
+    ).get().c;
+
+    // Revenue (Stripe — last 30 days of completed checkouts)
+    let revenue30d = 0, orders30d = 0, revenueByTier = {}, mrrEstimate = 0;
+    const TIERS_USD = {
+      starter: 1, skill_pack_lite: 29, skill_pack_std: 49,
+      skill_pack_elite: 79, pro_annual: 199, mcp_suite: 499,
+    };
+    if (stripe) {
+      const since = Math.floor((Date.now() - 1000 * 60 * 60 * 24 * 30) / 1000);
+      for await (const session of stripe.checkout.sessions.list({
+        created: { gte: since }, status: "complete", limit: 100,
+      })) {
+        if (session.payment_status !== "paid") continue;
+        orders30d++;
+        let pid = null;
+        try {
+          const full = await stripe.checkout.sessions.retrieve(session.id, { expand: ["line_items"] });
+          pid = full.line_items?.data?.[0]?.price?.id;
+        } catch { /* keep null */ }
+        const tier = TIER_BY_PRICE[pid] || "unknown";
+        const usd = (session.amount_total || 0) / 100;
+        revenue30d += usd;
+        revenueByTier[tier] = (revenueByTier[tier] || 0) + usd;
+        if (tier === "pro_annual") mrrEstimate += usd / 12;
+      }
+    }
+    res.json({
+      generatedAt: new Date().toISOString(),
+      licenses: { total: totalLicenses, active: activeLicenses, revoked, last7d, byTier },
+      revenue: { last30dUsd: Math.round(revenue30d * 100) / 100, orders30d, revenueByTier, mrrEstimateUsd: Math.round(mrrEstimate * 100) / 100 },
+      stripeConnected: !!stripe,
+    });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 app.listen(8787, () => console.log("revenue-engine on :8787"));
