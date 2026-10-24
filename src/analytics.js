@@ -82,7 +82,16 @@ export function scoreLeads() {
     FROM invoices WHERE lead_id IS NOT NULL
   `).get();
 
-    }
+  // REPAIR (2026-10-24): the body was truncated here — it closed with no return,
+  // so the function yielded undefined while remaining syntactically valid. The
+  // three queries above were computed and discarded. This restores the return of
+  // exactly those values under their own names. No logic was changed and no
+  // implementation was replaced.
+  //
+  // NOTE: SUM() over an empty invoice set is NULL, which is returned as-is. NULL
+  // means "nothing to measure", not "$0" — do not coerce it.
+  return { bySource, intentBySource, leadRevenue };
+}
 
 // ─── RECOMMENDATION ENGINE ───
 export async function generateRecommendations(campaignData, revenueData, leadData) {
