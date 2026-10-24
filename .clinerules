@@ -1,0 +1,7 @@
+# revenue-engine workspace rules
+- Read C:\Users\keith\.clinerules (global rules) first, then C:\Users\keith\OPERATOR_CONTEXT.md.
+- Stack: Express 4 + better-sqlite3 + Stripe + Resend + jose. ESM ("type": "module"). Node 24.
+- Port 8787. Routes: /webhook (Stripe, raw body), /v1/login, /v1/me, /v1/subscribe, /admin/health, /admin/dashboard, /admin/subscribers, /admin/sync.
+- Runs under PM2 as "revenue-engine". After changes: pm2 restart revenue-engine, then probe http://localhost:8787/admin/health and report the JSON.
+- Price IDs live in price-ids.json; secrets in C:\Users\keith\master.env (never print values).
+- Money actions (prices, refunds, products) require Keith's explicit approval before executing.
