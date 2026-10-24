@@ -1,0 +1,178 @@
+{
+  "scenario": "wrong_product",
+  "title": "a licence for product X used to claim product Y is denied",
+  "expected_outcome": "denied: the licence grants a different product",
+  "actual_outcome": "wrong_product=denied own_product=allowed",
+  "pass": true,
+  "checks": [
+    {
+      "name": "wrong product denied",
+      "ok": true,
+      "expected": null,
+      "actual": null
+    },
+    {
+      "name": "own product allowed",
+      "ok": true,
+      "expected": "a licence",
+      "actual": "allowed"
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    }
+  ],
+  "detail": {
+    "licence_product": "skill_pack_lite"
+  },
+  "generated_at": "2026-10-24T03:18:55.392Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 1,
+      "licenses": 1,
+      "deliveries": 1,
+      "successful_deliveries": 1,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 1,
+      "evidence": 5
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_3cade14f-40b3-4b28-826a-d536344f13d2",
+        "provider": "stripe",
+        "provider_event_id": "cs_synthetic_s13",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s13",
+        "product_id": "skill_pack_lite",
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "payment_reference": null,
+        "amount": 4900,
+        "currency": "usd",
+        "verification_status": "verified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_88b38c782ea4fd3af746c5dfe83ac8c0776c2f04158bd2e27f3c6913a9d09945",
+        "raw_payload_hash": "81d112f6eca2fb5bfc7f4a6311a61442c76a6e8084df7632b6a79387f8e2dd81",
+        "source_mode": "synthetic",
+        "payload_json": "{\"provider_event_id\":\"cs_synthetic_s13\",\"event_type\":\"checkout.session.completed\",\"session\":{\"kind\":\"checkout_session\",\"present\":true,\"id\":\"cs_synthetic_s13\",\"object\":\"checkout.session\",\"status\":\"complete\",\"payment_status\":\"paid\",\"amount_total\":4900,\"currency\":\"usd\",\"mode\":\"payment\",\"customer\":\"cus_synthetic_s13\",\"subscription\":null,\"payment_intent\":null,\"client_reference_id\":null,\"customer_email\":\"synthetic.buyer.a@example.invalid\",\"created\":1767225600,\"line_item_price_ids\":[\"price_SYNTHETIC_EXPERIMENT_LITE\"]},\"object\":null}"
+      }
+    ],
+    "entitlements": [
+      {
+        "id": "ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb",
+        "customer_id": "cus_8e32ab91-2da1-461e-b5c7-e68a9db4e05f",
+        "product_id": "skill_pack_lite",
+        "status": "active",
+        "source_event_id": "evt_3cade14f-40b3-4b28-826a-d536344f13d2",
+        "provider_subscription_id": null,
+        "starts_at": "2026-01-01T00:00:00.000Z",
+        "expires_at": null,
+        "revoked_reason": null
+      }
+    ],
+    "licenses": [
+      {
+        "id": "lic_d6ef95c0-5c27-492f-a721-945d58288aa1",
+        "email": "synthetic.buyer.a@example.invalid",
+        "price_id": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "tier": "skill_pack",
+        "status": "active",
+        "entitlement_id": "ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb",
+        "issued_at": "2026-10-24T03:18:55.391Z",
+        "expires_at": null,
+        "revoked_reason": null,
+        "event_id": "evt_3cade14f-40b3-4b28-826a-d536344f13d2",
+        "license_key_masked": "*******************************************************71CC"
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "dlv_78860ddc-ed68-4625-abc7-1a7bf5da26e1",
+        "fulfillment_run_id": "ful_f81031f4-cd1d-4569-b263-c9e49070d8d1",
+        "entitlement_id": "ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb",
+        "license_id": "lic_d6ef95c0-5c27-492f-a721-945d58288aa1",
+        "customer_id": "cus_8e32ab91-2da1-461e-b5c7-e68a9db4e05f",
+        "channel": "email",
+        "recipient_ref": "synthetic.buyer.a@example.invalid",
+        "artifact_ref": "*******************************************************71CC",
+        "status": "captured",
+        "provider_message_id": "capture_1aa41a2e-5903-40ec-8dd4-8771f9c42a34",
+        "error": null,
+        "sent_at": "2026-10-24T03:18:55.392Z"
+      }
+    ],
+    "fulfillment_runs": [
+      {
+        "id": "ful_f81031f4-cd1d-4569-b263-c9e49070d8d1",
+        "idempotency_key": "ful_88b38c782ea4fd3af746c5dfe83ac8c0776c2f04158bd2e27f3c6913a9d09945",
+        "event_id": "evt_3cade14f-40b3-4b28-826a-d536344f13d2",
+        "customer_id": "cus_8e32ab91-2da1-461e-b5c7-e68a9db4e05f",
+        "entitlement_id": "ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb",
+        "license_id": "lic_d6ef95c0-5c27-492f-a721-945d58288aa1",
+        "stage": "complete",
+        "status": "completed",
+        "attempts": 4,
+        "last_error": null
+      }
+    ],
+    "evidence": [
+      {
+        "id": "evd_57a5b835-2698-4da3-b408-8e0830e854e0",
+        "kind": "fulfillment.stage.started",
+        "subject_id": "ful_f81031f4-cd1d-4569-b263-c9e49070d8d1",
+        "payload_json": "{\"stage\":\"started\",\"status\":\"running\",\"event_id\":\"evt_3cade14f-40b3-4b28-826a-d536344f13d2\",\"idempotency_key\":\"ful_88b38c782ea4fd3af746c5dfe83ac8c0776c2f04158bd2e27f3c6913a9d09945\"}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_58d853f7-7154-4ef2-a9ec-3e53df454dc4",
+        "kind": "fulfillment.stage.entitlement",
+        "subject_id": "ful_f81031f4-cd1d-4569-b263-c9e49070d8d1",
+        "payload_json": "{\"stage\":\"entitlement\",\"status\":\"running\",\"event_id\":\"evt_3cade14f-40b3-4b28-826a-d536344f13d2\",\"entitlement_id\":\"ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb\",\"license_id\":null,\"idempotency_key\":\"ful_88b38c782ea4fd3af746c5dfe83ac8c0776c2f04158bd2e27f3c6913a9d09945\",\"last_error\":null}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_171c4e6d-f7d4-483b-aa6b-20021957aafb",
+        "kind": "fulfillment.stage.license",
+        "subject_id": "ful_f81031f4-cd1d-4569-b263-c9e49070d8d1",
+        "payload_json": "{\"stage\":\"license\",\"status\":\"running\",\"event_id\":\"evt_3cade14f-40b3-4b28-826a-d536344f13d2\",\"entitlement_id\":\"ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb\",\"license_id\":\"lic_d6ef95c0-5c27-492f-a721-945d58288aa1\",\"idempotency_key\":\"ful_88b38c782ea4fd3af746c5dfe83ac8c0776c2f04158bd2e27f3c6913a9d09945\",\"last_error\":null}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_1e545ccc-e838-4dbf-9f4f-bcd318ba4dee",
+        "kind": "fulfillment.stage.delivery",
+        "subject_id": "ful_f81031f4-cd1d-4569-b263-c9e49070d8d1",
+        "payload_json": "{\"stage\":\"delivery\",\"status\":\"running\",\"event_id\":\"evt_3cade14f-40b3-4b28-826a-d536344f13d2\",\"entitlement_id\":\"ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb\",\"license_id\":\"lic_d6ef95c0-5c27-492f-a721-945d58288aa1\",\"idempotency_key\":\"ful_88b38c782ea4fd3af746c5dfe83ac8c0776c2f04158bd2e27f3c6913a9d09945\",\"last_error\":null}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_74090297-8864-40d9-a9c4-e5f20407e0f7",
+        "kind": "fulfillment.stage.complete",
+        "subject_id": "ful_f81031f4-cd1d-4569-b263-c9e49070d8d1",
+        "payload_json": "{\"stage\":\"complete\",\"status\":\"completed\",\"event_id\":\"evt_3cade14f-40b3-4b28-826a-d536344f13d2\",\"entitlement_id\":\"ent_d37fb849-4098-4a15-8bd3-4f14f423d2fb\",\"license_id\":\"lic_d6ef95c0-5c27-492f-a721-945d58288aa1\",\"idempotency_key\":\"ful_88b38c782ea4fd3af746c5dfe83ac8c0776c2f04158bd2e27f3c6913a9d09945\",\"last_error\":null}",
+        "source_fingerprint": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "scenario": "admin_token_unset",
+  "title": "an admin request when REVENUE_ADMIN_TOKEN is unset is denied (fail closed)",
+  "expected_outcome": "denied: admin.not_configured",
+  "actual_outcome": "code=admin.not_configured",
+  "pass": true,
+  "checks": [
+    {
+      "name": "denied",
+      "ok": true,
+      "expected": "an admin auth error",
+      "actual": "admin.not_configured"
+    },
+    {
+      "name": "named admin.not_configured",
+      "ok": true,
+      "expected": "admin.not_configured",
+      "actual": "admin.not_configured"
+    }
+  ],
+  "detail": {
+    "error_code": "admin.not_configured",
+    "governed_actions": 6
+  },
+  "generated_at": "2026-10-24T03:18:55.654Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "scenario": "duplicate_license",
+  "title": "reconciliation detects two active licences for the same email and price",
+  "expected_outcome": "finding: duplicate_license",
+  "actual_outcome": "verdict=BLOCKED findings=duplicate_license",
+  "pass": true,
+  "checks": [
+    {
+      "name": "finding detected",
+      "ok": true,
+      "expected": "duplicate_license",
+      "actual": "duplicate_license"
+    }
+  ],
+  "detail": {
+    "verdict": "BLOCKED",
+    "findings": [
+      "duplicate_license"
+    ],
+    "licences": 2
+  },
+  "generated_at": "2026-10-24T03:18:55.613Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 0,
+      "entitlements": 0,
+      "licenses": 2,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 0
+    },
+    "revenue_events": [],
+    "entitlements": [],
+    "licenses": [
+      {
+        "id": "lic_synthetic_s24_a",
+        "email": "synthetic.buyer.a@example.invalid",
+        "price_id": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "tier": "skill_pack",
+        "status": "active",
+        "entitlement_id": null,
+        "issued_at": null,
+        "expires_at": null,
+        "revoked_reason": null,
+        "event_id": null,
+        "license_key_masked": "************************0001"
+      },
+      {
+        "id": "lic_synthetic_s24_b",
+        "email": "synthetic.buyer.a@example.invalid",
+        "price_id": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "tier": "skill_pack",
+        "status": "active",
+        "entitlement_id": null,
+        "issued_at": null,
+        "expires_at": null,
+        "revoked_reason": null,
+        "event_id": null,
+        "license_key_masked": "************************0002"
+      }
+    ],
+    "deliveries": [],
+    "fulfillment_runs": [],
+    "evidence": []
+  }
+}

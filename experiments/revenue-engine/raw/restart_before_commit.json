@@ -1,0 +1,190 @@
+{
+  "scenario": "restart_before_commit",
+  "title": "a run row inserted with NO entitlement is recovered without duplicating",
+  "expected_outcome": "recovered: one entitlement, one licence, one delivery",
+  "actual_outcome": "recovered=completed entitlements=1 licences=1 deliveries=1",
+  "pass": true,
+  "checks": [
+    {
+      "name": "recovered run completed",
+      "ok": true,
+      "expected": "completed",
+      "actual": "completed"
+    },
+    {
+      "name": "exactly one run row",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "exactly one entitlement",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "exactly one licence",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "exactly one successful delivery",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    }
+  ],
+  "detail": {
+    "run_rows": 1,
+    "stage": "complete"
+  },
+  "generated_at": "2026-10-24T03:18:55.518Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 1,
+      "licenses": 1,
+      "deliveries": 1,
+      "successful_deliveries": 1,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 1,
+      "evidence": 4
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_02c31b7b-8f60-4723-a022-e37ebad6edbd",
+        "provider": "stripe",
+        "provider_event_id": "cs_synthetic_s19",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s19",
+        "product_id": "skill_pack_lite",
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "payment_reference": null,
+        "amount": 4900,
+        "currency": "usd",
+        "verification_status": "verified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_3ad9c9ec2d04e2186fc4efe6d4e97556f0f867805d953197c87ca83afadf2b44",
+        "raw_payload_hash": "ae3d7f4c2306c9a791584691603b54693c1d5d0cf5ae0b92396bb71ef021081f",
+        "source_mode": "synthetic",
+        "payload_json": "{\"provider_event_id\":\"cs_synthetic_s19\",\"event_type\":\"checkout.session.completed\",\"session\":{\"kind\":\"checkout_session\",\"present\":true,\"id\":\"cs_synthetic_s19\",\"object\":\"checkout.session\",\"status\":\"complete\",\"payment_status\":\"paid\",\"amount_total\":4900,\"currency\":\"usd\",\"mode\":\"payment\",\"customer\":\"cus_synthetic_s19\",\"subscription\":null,\"payment_intent\":null,\"client_reference_id\":null,\"customer_email\":\"synthetic.buyer.a@example.invalid\",\"created\":1767225600,\"line_item_price_ids\":[\"price_SYNTHETIC_EXPERIMENT_LITE\"]},\"object\":null}"
+      }
+    ],
+    "entitlements": [
+      {
+        "id": "ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24",
+        "customer_id": "cus_06dd26b0-9fa2-4e2d-a989-574c40401046",
+        "product_id": "skill_pack_lite",
+        "status": "active",
+        "source_event_id": "evt_02c31b7b-8f60-4723-a022-e37ebad6edbd",
+        "provider_subscription_id": null,
+        "starts_at": "2026-01-01T00:00:00.000Z",
+        "expires_at": null,
+        "revoked_reason": null
+      }
+    ],
+    "licenses": [
+      {
+        "id": "lic_6e671f0f-1817-4f4e-aeba-b7bc25e109a4",
+        "email": "synthetic.buyer.a@example.invalid",
+        "price_id": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "tier": "skill_pack",
+        "status": "active",
+        "entitlement_id": "ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24",
+        "issued_at": "2026-10-24T03:18:55.517Z",
+        "expires_at": null,
+        "revoked_reason": null,
+        "event_id": "evt_02c31b7b-8f60-4723-a022-e37ebad6edbd",
+        "license_key_masked": "*******************************************************6C47"
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "dlv_d1905b4e-7a32-465a-b461-cf98733154ca",
+        "fulfillment_run_id": "ful_synthetic_s19",
+        "entitlement_id": "ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24",
+        "license_id": "lic_6e671f0f-1817-4f4e-aeba-b7bc25e109a4",
+        "customer_id": "cus_06dd26b0-9fa2-4e2d-a989-574c40401046",
+        "channel": "email",
+        "recipient_ref": "synthetic.buyer.a@example.invalid",
+        "artifact_ref": "*******************************************************6C47",
+        "status": "captured",
+        "provider_message_id": "capture_60e7bb8d-3cd8-4995-adfe-5e3a21d9efca",
+        "error": null,
+        "sent_at": "2026-10-24T03:18:55.517Z"
+      }
+    ],
+    "fulfillment_runs": [
+      {
+        "id": "ful_synthetic_s19",
+        "idempotency_key": "ful_3ad9c9ec2d04e2186fc4efe6d4e97556f0f867805d953197c87ca83afadf2b44",
+        "event_id": "evt_02c31b7b-8f60-4723-a022-e37ebad6edbd",
+        "customer_id": "cus_06dd26b0-9fa2-4e2d-a989-574c40401046",
+        "entitlement_id": "ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24",
+        "license_id": "lic_6e671f0f-1817-4f4e-aeba-b7bc25e109a4",
+        "stage": "complete",
+        "status": "completed",
+        "attempts": 4,
+        "last_error": null
+      }
+    ],
+    "evidence": [
+      {
+        "id": "evd_04ea6dab-4026-4724-b288-020707514832",
+        "kind": "fulfillment.stage.entitlement",
+        "subject_id": "ful_synthetic_s19",
+        "payload_json": "{\"stage\":\"entitlement\",\"status\":\"running\",\"event_id\":\"evt_02c31b7b-8f60-4723-a022-e37ebad6edbd\",\"entitlement_id\":\"ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24\",\"license_id\":null,\"idempotency_key\":\"ful_3ad9c9ec2d04e2186fc4efe6d4e97556f0f867805d953197c87ca83afadf2b44\",\"last_error\":null}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_2c54dba5-687a-4e5e-9604-f4b066deb383",
+        "kind": "fulfillment.stage.license",
+        "subject_id": "ful_synthetic_s19",
+        "payload_json": "{\"stage\":\"license\",\"status\":\"running\",\"event_id\":\"evt_02c31b7b-8f60-4723-a022-e37ebad6edbd\",\"entitlement_id\":\"ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24\",\"license_id\":\"lic_6e671f0f-1817-4f4e-aeba-b7bc25e109a4\",\"idempotency_key\":\"ful_3ad9c9ec2d04e2186fc4efe6d4e97556f0f867805d953197c87ca83afadf2b44\",\"last_error\":null}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_24e84733-24a6-47f9-8343-6086f2cc3c04",
+        "kind": "fulfillment.stage.delivery",
+        "subject_id": "ful_synthetic_s19",
+        "payload_json": "{\"stage\":\"delivery\",\"status\":\"running\",\"event_id\":\"evt_02c31b7b-8f60-4723-a022-e37ebad6edbd\",\"entitlement_id\":\"ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24\",\"license_id\":\"lic_6e671f0f-1817-4f4e-aeba-b7bc25e109a4\",\"idempotency_key\":\"ful_3ad9c9ec2d04e2186fc4efe6d4e97556f0f867805d953197c87ca83afadf2b44\",\"last_error\":null}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_b8708bbd-7851-4fe0-acd1-47bf89519133",
+        "kind": "fulfillment.stage.complete",
+        "subject_id": "ful_synthetic_s19",
+        "payload_json": "{\"stage\":\"complete\",\"status\":\"completed\",\"event_id\":\"evt_02c31b7b-8f60-4723-a022-e37ebad6edbd\",\"entitlement_id\":\"ent_87a4a514-67bf-4788-a79c-fafe4fd7aa24\",\"license_id\":\"lic_6e671f0f-1817-4f4e-aeba-b7bc25e109a4\",\"idempotency_key\":\"ful_3ad9c9ec2d04e2186fc4efe6d4e97556f0f867805d953197c87ca83afadf2b44\",\"last_error\":null}",
+        "source_fingerprint": null
+      }
+    ]
+  }
+}

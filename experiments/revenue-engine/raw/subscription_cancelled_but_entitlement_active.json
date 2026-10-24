@@ -1,0 +1,65 @@
+{
+  "scenario": "subscription_cancelled_but_entitlement_active",
+  "title": "reconciliation detects an active entitlement for a cancelled subscription",
+  "expected_outcome": "finding: subscription_cancelled_but_entitlement_active",
+  "actual_outcome": "verdict=REPAIRABLE findings=subscription_cancelled_but_entitlement_active",
+  "pass": true,
+  "checks": [
+    {
+      "name": "finding detected",
+      "ok": true,
+      "expected": "subscription_cancelled_but_entitlement_active",
+      "actual": "subscription_cancelled_but_entitlement_active"
+    },
+    {
+      "name": "verdict is not CONSISTENT",
+      "ok": true,
+      "expected": "not CONSISTENT",
+      "actual": "REPAIRABLE"
+    }
+  ],
+  "detail": {
+    "verdict": "REPAIRABLE",
+    "findings": [
+      "subscription_cancelled_but_entitlement_active"
+    ]
+  },
+  "generated_at": "2026-10-24T03:18:55.558Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 0,
+      "entitlements": 1,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 1,
+      "evidence": 0
+    },
+    "revenue_events": [],
+    "entitlements": [
+      {
+        "id": "ent_synthetic_s21",
+        "customer_id": "cus_604ba3b0-dff6-4f96-ba25-e24a37f85e04",
+        "product_id": "skill_pack_lite",
+        "status": "active",
+        "source_event_id": null,
+        "provider_subscription_id": "sub_synthetic_1",
+        "starts_at": "2026-10-24T03:18:55.558Z",
+        "expires_at": null,
+        "revoked_reason": null
+      }
+    ],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [],
+    "evidence": []
+  }
+}

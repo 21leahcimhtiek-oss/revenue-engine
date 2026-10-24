@@ -1,0 +1,81 @@
+{
+  "scenario": "fulfillment_without_verified_payment",
+  "title": "reconciliation detects a fulfilment run whose payment was never verified",
+  "expected_outcome": "finding: fulfillment_without_verified_payment",
+  "actual_outcome": "verdict=BLOCKED findings=fulfillment_without_verified_payment,unknown_product_mapping",
+  "pass": true,
+  "checks": [
+    {
+      "name": "finding detected",
+      "ok": true,
+      "expected": "fulfillment_without_verified_payment",
+      "actual": "fulfillment_without_verified_payment,unknown_product_mapping"
+    }
+  ],
+  "detail": {
+    "verdict": "BLOCKED",
+    "findings": [
+      "fulfillment_without_verified_payment",
+      "unknown_product_mapping"
+    ]
+  },
+  "generated_at": "2026-10-24T03:18:55.594Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 0,
+      "evidence": 0
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_8acaa2a1-e85b-4731-ad96-86d4e154d1f6",
+        "provider": "stripe",
+        "provider_event_id": "evt_synthetic_unverified_1",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s23",
+        "product_id": null,
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "payment_reference": null,
+        "amount": null,
+        "currency": null,
+        "verification_status": "unverified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_6c75330660f247928919c018da38e05a40c423f41b4179dfbf6b14aa54955668",
+        "raw_payload_hash": "2e9e2a72074b75e3dadfa62876548eff9927c9fcf6b7a882ab356487b337fa73",
+        "source_mode": "manual",
+        "payload_json": "{\"note\":\"synthetic unverified event\"}"
+      }
+    ],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [
+      {
+        "id": "ful_synthetic_s23",
+        "idempotency_key": "ful_synthetic_s23_key",
+        "event_id": "evt_8acaa2a1-e85b-4731-ad96-86d4e154d1f6",
+        "customer_id": null,
+        "entitlement_id": null,
+        "license_id": null,
+        "stage": "started",
+        "status": "running",
+        "attempts": 0,
+        "last_error": null
+      }
+    ],
+    "evidence": []
+  }
+}

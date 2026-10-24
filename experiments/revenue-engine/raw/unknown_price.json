@@ -1,0 +1,146 @@
+{
+  "scenario": "unknown_price",
+  "title": "a paid session whose price is not in the catalog is refused",
+  "expected_outcome": "refused with unknown_product_mapping, nothing created",
+  "actual_outcome": "product_id=null fulfilment=refused code=fulfillment.unknown_product",
+  "pass": true,
+  "checks": [
+    {
+      "name": "no product resolved",
+      "ok": true,
+      "expected": null,
+      "actual": null
+    },
+    {
+      "name": "fulfilment refused",
+      "ok": true,
+      "expected": "refused",
+      "actual": "refused"
+    },
+    {
+      "name": "refusal names the unknown product",
+      "ok": true,
+      "expected": "fulfillment.unknown_product",
+      "actual": "fulfillment.unknown_product"
+    },
+    {
+      "name": "no entitlement",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "no licence",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "detail": {
+    "price_reference": "price_SYNTHETIC_EXPERIMENT_UNKNOWN",
+    "code": "fulfillment.unknown_product",
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 0,
+      "evidence": 2
+    }
+  },
+  "generated_at": "2026-10-24T03:18:55.252Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 0,
+      "evidence": 2
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_b86d071b-a2a3-4e14-aa46-36a8255c5aeb",
+        "provider": "stripe",
+        "provider_event_id": "cs_synthetic_s06",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s06",
+        "product_id": null,
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_UNKNOWN",
+        "payment_reference": null,
+        "amount": 4900,
+        "currency": "usd",
+        "verification_status": "verified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_6c29e6f21a9d49a5ee37c8fff161e7532fe902286d44caeda37f426ac2eaebfe",
+        "raw_payload_hash": "c646d87b428d6f3c358a8c622932c26487685b76ed9e212c31b125fcc122e550",
+        "source_mode": "synthetic",
+        "payload_json": "{\"provider_event_id\":\"cs_synthetic_s06\",\"event_type\":\"checkout.session.completed\",\"session\":{\"kind\":\"checkout_session\",\"present\":true,\"id\":\"cs_synthetic_s06\",\"object\":\"checkout.session\",\"status\":\"complete\",\"payment_status\":\"paid\",\"amount_total\":4900,\"currency\":\"usd\",\"mode\":\"payment\",\"customer\":\"cus_synthetic_s06\",\"subscription\":null,\"payment_intent\":null,\"client_reference_id\":null,\"customer_email\":\"synthetic.buyer.a@example.invalid\",\"created\":1767225600,\"line_item_price_ids\":[\"price_SYNTHETIC_EXPERIMENT_UNKNOWN\"]},\"object\":null}"
+      }
+    ],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [
+      {
+        "id": "ful_be44a215-471c-49e5-b9ed-58908b75330c",
+        "idempotency_key": "ful_6c29e6f21a9d49a5ee37c8fff161e7532fe902286d44caeda37f426ac2eaebfe",
+        "event_id": null,
+        "customer_id": null,
+        "entitlement_id": null,
+        "license_id": null,
+        "stage": "refused",
+        "status": "refused",
+        "attempts": 1,
+        "last_error": "unknown product or price"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "evd_b9265940-ec63-49d8-b682-4ef70ef27db0",
+        "kind": "fulfillment.stage.started",
+        "subject_id": "ful_be44a215-471c-49e5-b9ed-58908b75330c",
+        "payload_json": "{\"stage\":\"started\",\"status\":\"running\",\"event_id\":null,\"idempotency_key\":\"ful_6c29e6f21a9d49a5ee37c8fff161e7532fe902286d44caeda37f426ac2eaebfe\"}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_1cdec1c4-106e-4e1d-b9a9-a05b30167d48",
+        "kind": "fulfillment.stage.refused",
+        "subject_id": "ful_be44a215-471c-49e5-b9ed-58908b75330c",
+        "payload_json": "{\"stage\":\"refused\",\"status\":\"refused\",\"event_id\":null,\"entitlement_id\":null,\"license_id\":null,\"idempotency_key\":\"ful_6c29e6f21a9d49a5ee37c8fff161e7532fe902286d44caeda37f426ac2eaebfe\",\"last_error\":\"unknown product or price\"}",
+        "source_fingerprint": null
+      }
+    ]
+  }
+}

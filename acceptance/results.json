@@ -1,0 +1,166 @@
+{
+  "schema": "aurora/revenue-engine-independent-acceptance@1",
+  "generated_at": "2026-10-24T03:18:58.082Z",
+  "port": 8899,
+  "checks_total": 17,
+  "checks_passed": 17,
+  "checks_failed": 0,
+  "results": [
+    {
+      "id": "server booted (real HTTP socket)",
+      "pass": true,
+      "detail": {
+        "port": 8899
+      }
+    },
+    {
+      "id": "1 payment verification: an invalid signature is rejected",
+      "pass": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "id": "2 product mapping: an unknown price creates NO entitlement",
+      "pass": true,
+      "detail": {
+        "status": "refused",
+        "before": 3,
+        "after": 3,
+        "reason": "unknown product or price"
+      }
+    },
+    {
+      "id": "3 entitlement creation",
+      "pass": true,
+      "detail": {
+        "entitlement_id": "ent_cc447dec-b324-43a5-bce9-ac0f11b0bde9"
+      }
+    },
+    {
+      "id": "4 licence issuance",
+      "pass": true,
+      "detail": {
+        "license_id": "lic_868b19b0-2684-42d3-b6b6-e9f1bd971cf4"
+      }
+    },
+    {
+      "id": "5 duplicate-event protection: the same event yields ONE licence",
+      "pass": true,
+      "detail": {
+        "before": 3,
+        "afterFirst": 4,
+        "afterSecond": 4
+      }
+    },
+    {
+      "id": "6 restart recovery: persisted state survives a restart",
+      "pass": true,
+      "detail": {
+        "before": 4,
+        "after": 4,
+        "restarted": true
+      }
+    },
+    {
+      "id": "7 reconciliation: the admin surface reports a verdict",
+      "pass": true,
+      "detail": {
+        "status": 200,
+        "verdict": "UNKNOWN"
+      }
+    },
+    {
+      "id": "8 cancelled access denial: a revoked licence invalidates a LIVE session",
+      "pass": true,
+      "detail": {
+        "before": 200,
+        "after": 401
+      }
+    },
+    {
+      "id": "9 unknown-product blocking: the event is recorded but grants nothing",
+      "pass": true,
+      "detail": {
+        "row": {
+          "verification_status": "verified",
+          "processing_status": "pending",
+          "product_id": null
+        }
+      }
+    },
+    {
+      "id": "10 invalid-event blocking",
+      "pass": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "id": "11 delivery evidence: the evidence ledger records fulfilment stages",
+      "pass": true,
+      "detail": {
+        "bundles": 26,
+        "kinds": [
+          "access.session",
+          "admin.reconcile",
+          "access.login",
+          "fulfillment.stage.started",
+          "fulfillment.stage.entitlement",
+          "fulfillment.stage.license",
+          "fulfillment.stage.delivery",
+          "fulfillment.stage.complete",
+          "fulfillment.stage.refused"
+        ]
+      }
+    },
+    {
+      "id": "12 customer isolation: customer B cannot log in with customer A's licence",
+      "pass": true,
+      "detail": {
+        "status": 401
+      }
+    },
+    {
+      "id": "13 unauthorized admin rejection",
+      "pass": true,
+      "detail": {
+        "noToken": 401,
+        "badToken": 401
+      }
+    },
+    {
+      "id": "14 unauthorized money movement rejection",
+      "pass": true,
+      "detail": {
+        "attempts": 4,
+        "blocked": 4
+      }
+    },
+    {
+      "id": "15 evidence read-back",
+      "pass": true,
+      "detail": {
+        "status": 200,
+        "count": 27,
+        "ok": true
+      }
+    },
+    {
+      "id": "16 original fixture consistency: the live database is byte-identical to the pre-mission backup",
+      "pass": true,
+      "detail": {
+        "live_db_sha256": "b0884518348b1f2c3d47e3df4f5d7d2cc667551f47764a4fbf347c633e95aa14",
+        "backup_sha256": "b0884518348b1f2c3d47e3df4f5d7d2cc667551f47764a4fbf347c633e95aa14"
+      }
+    }
+  ],
+  "boundary": {
+    "no_real_money": true,
+    "no_real_customer": true,
+    "no_live_email": true,
+    "no_stripe_network_call": true,
+    "no_public_endpoint_exposed": true,
+    "disposable_database": true
+  }
+}

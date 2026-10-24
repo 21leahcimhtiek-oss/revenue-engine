@@ -1,0 +1,1914 @@
+{
+  "contract": "aurora.revenue-engine.experiments@1",
+  "generated_at": "2026-10-24T03:18:55.700Z",
+  "started_at": "2026-10-24T03:18:55.125Z",
+  "product_revision": "2f3b8dbda53ec4493f37af1ce28d4872058c436b07d781cff1e72b86af604f34",
+  "source_fingerprint": "36f54324cdd4ec323c3ba4ba16ec1a454278660b1f03a4d492bf2a833ce583ab",
+  "exercised_source_files": [
+    {
+      "path": "src/access.js",
+      "sha256": "f2556c34856175b0b56580fa371dac46746b493bcd2f9ad5df885ce4cd326bfd"
+    },
+    {
+      "path": "src/admin.js",
+      "sha256": "80be0a949760b2637641c11304d3045ccc3b338ec177f0ad68e997a1584d9116"
+    },
+    {
+      "path": "src/catalog.js",
+      "sha256": "8d820409c2e8054eabb1496c40c8d8d3d0cb8d46bcb0c99f10cdd368435e11a2"
+    },
+    {
+      "path": "src/db.js",
+      "sha256": "ed507d53d7e93071c598851ece112aed5fe1a20dd1b10a3939faf9e9c830b41d"
+    },
+    {
+      "path": "src/delivery.js",
+      "sha256": "9bfa675743eaf25b394182d1fe0fbdc0a7c841f5ff1605c970d2a7418aa4af6e"
+    },
+    {
+      "path": "src/entitlements.js",
+      "sha256": "cd0ece950e8ceebde0186050640dd5ef0fa08dc6f666ade5947dc185e3c244b7"
+    },
+    {
+      "path": "src/events.js",
+      "sha256": "b6c73da0f19896f6a6da77a394ce63196e017d66c06ce7d23e8b90af096150f0"
+    },
+    {
+      "path": "src/fulfillment.js",
+      "sha256": "26fa3ab0e0d2446c3b6aadca49244acf6b10a5b09366eab26ae87bb5f81081fa"
+    },
+    {
+      "path": "src/governed.js",
+      "sha256": "5afda88d36fc5d9f5de5543125a2cb8314bd2949ce365bf95f575b5faf2d0bbd"
+    },
+    {
+      "path": "src/licenses.js",
+      "sha256": "9f608ba80d96218e4a0f11690a3b62876d7b04285a4396e0373d67e0214454f3"
+    },
+    {
+      "path": "src/reconcile.js",
+      "sha256": "153581ae8518c65e3a53e9555630b6e3d7093faba6c0404003f5ae46c8357751"
+    },
+    {
+      "path": "src/stripe-boundary.js",
+      "sha256": "c98de984da73c3570ec40fa549db026647bdaec056bcadac1f81f9e8f2dee750"
+    },
+    {
+      "path": "src/webhook.js",
+      "sha256": "8917160526c32c0b34003c40fdead339cea332d7f0a6659d7cd85cda06327d12"
+    }
+  ],
+  "harness_files": [
+    {
+      "path": "experiments/revenue-engine/run.mjs",
+      "sha256": "890659847cbe7173979cbc38d485f94d9681036482e01bd2d609c0ce890fec5e"
+    },
+    {
+      "path": "experiments/revenue-engine/lib.mjs",
+      "sha256": "7622cde1a97e45f6106a8f60495acfafa3d5dda732c277589d46ada6a13a3568"
+    },
+    {
+      "path": "experiments/revenue-engine/scenarios/flow.mjs",
+      "sha256": "6b99ffa9c517a8ec0459d1505bc49f273632c6f6654f72a6a38ef07a4eddb346"
+    },
+    {
+      "path": "experiments/revenue-engine/scenarios/ops.mjs",
+      "sha256": "ccc8568c77ac6924f88c878719360aeb7c12874fec5ac97075e4e4b628b2eb68"
+    },
+    {
+      "path": "experiments/revenue-engine/scenarios/governance.mjs",
+      "sha256": "f5c503e0a9ca7926708196bbf1447900a48282965fe3f3058600faa6c6612491"
+    }
+  ],
+  "required_metrics": [
+    "PAYMENT_EVENTS_TOTAL",
+    "PAYMENT_EVENTS_VERIFIED",
+    "PAYMENT_EVENTS_REJECTED",
+    "DUPLICATE_EVENTS",
+    "DUPLICATE_EFFECTS",
+    "FULFILLMENTS_ATTEMPTED",
+    "FULFILLMENTS_COMPLETED",
+    "FULFILLMENTS_FAILED",
+    "LICENSES_EXPECTED",
+    "LICENSES_ISSUED",
+    "DUPLICATE_LICENSES",
+    "ENTITLEMENTS_EXPECTED",
+    "ENTITLEMENTS_CORRECT",
+    "DELIVERIES_EXPECTED",
+    "DELIVERIES_CAPTURED",
+    "RECONCILIATION_SCENARIOS",
+    "RECONCILIATION_CORRECT",
+    "RESTART_SCENARIOS",
+    "RESTART_RECOVERED",
+    "INVALID_EVENTS_BLOCKED",
+    "UNKNOWN_PRODUCTS_BLOCKED",
+    "UNAUTHORIZED_MONEY_ACTIONS",
+    "UNAUTHORIZED_MONEY_ACTIONS_BLOCKED",
+    "CROSS_CUSTOMER_ACCESS_ATTEMPTS",
+    "CROSS_CUSTOMER_ACCESS_BLOCKED",
+    "EVIDENCE_BUNDLES_CREATED",
+    "EVIDENCE_BUNDLES_VALID",
+    "SCENARIOS_TOTAL",
+    "SCENARIOS_PASSED"
+  ],
+  "metrics": {
+    "PAYMENT_EVENTS_TOTAL": 25,
+    "PAYMENT_EVENTS_VERIFIED": 16,
+    "PAYMENT_EVENTS_REJECTED": 7,
+    "DUPLICATE_EVENTS": 2,
+    "DUPLICATE_EFFECTS": 0,
+    "FULFILLMENTS_ATTEMPTED": 21,
+    "FULFILLMENTS_COMPLETED": 18,
+    "FULFILLMENTS_FAILED": 3,
+    "LICENSES_EXPECTED": 14,
+    "LICENSES_ISSUED": 14,
+    "DUPLICATE_LICENSES": 0,
+    "ENTITLEMENTS_EXPECTED": 14,
+    "ENTITLEMENTS_CORRECT": 14,
+    "DELIVERIES_EXPECTED": 14,
+    "DELIVERIES_CAPTURED": 14,
+    "RECONCILIATION_SCENARIOS": 6,
+    "RECONCILIATION_CORRECT": 6,
+    "RESTART_SCENARIOS": 3,
+    "RESTART_RECOVERED": 3,
+    "INVALID_EVENTS_BLOCKED": 3,
+    "UNKNOWN_PRODUCTS_BLOCKED": 2,
+    "UNAUTHORIZED_MONEY_ACTIONS": 3,
+    "UNAUTHORIZED_MONEY_ACTIONS_BLOCKED": 3,
+    "CROSS_CUSTOMER_ACCESS_ATTEMPTS": 2,
+    "CROSS_CUSTOMER_ACCESS_BLOCKED": 2,
+    "EVIDENCE_BUNDLES_CREATED": 109,
+    "EVIDENCE_BUNDLES_VALID": 109,
+    "SCENARIOS_TOTAL": 35,
+    "SCENARIOS_PASSED": 35
+  },
+  "consistency": {
+    "checks": [
+      {
+        "name": "PAYMENT_EVENTS_TOTAL = VERIFIED + REJECTED + DUPLICATE_EVENTS",
+        "ok": true,
+        "expected": 25,
+        "actual": 25
+      },
+      {
+        "name": "FULFILLMENTS_ATTEMPTED = COMPLETED + FAILED",
+        "ok": true,
+        "expected": 21,
+        "actual": 21
+      },
+      {
+        "name": "DUPLICATE_EFFECTS = 0",
+        "ok": true,
+        "expected": 0,
+        "actual": 0
+      },
+      {
+        "name": "DUPLICATE_LICENSES = 0",
+        "ok": true,
+        "expected": 0,
+        "actual": 0
+      },
+      {
+        "name": "LICENSES_ISSUED <= LICENSES_EXPECTED",
+        "ok": true,
+        "expected": "<= 14",
+        "actual": 14
+      },
+      {
+        "name": "ENTITLEMENTS_CORRECT <= ENTITLEMENTS_EXPECTED",
+        "ok": true,
+        "expected": "<= 14",
+        "actual": 14
+      },
+      {
+        "name": "DELIVERIES_CAPTURED <= DELIVERIES_EXPECTED",
+        "ok": true,
+        "expected": "<= 14",
+        "actual": 14
+      },
+      {
+        "name": "RECONCILIATION_CORRECT <= RECONCILIATION_SCENARIOS",
+        "ok": true,
+        "expected": "<= 6",
+        "actual": 6
+      },
+      {
+        "name": "RESTART_RECOVERED <= RESTART_SCENARIOS",
+        "ok": true,
+        "expected": "<= 3",
+        "actual": 3
+      },
+      {
+        "name": "INVALID_EVENTS_BLOCKED <= PAYMENT_EVENTS_REJECTED",
+        "ok": true,
+        "expected": "<= 7",
+        "actual": 3
+      },
+      {
+        "name": "UNKNOWN_PRODUCTS_BLOCKED <= PAYMENT_EVENTS_REJECTED",
+        "ok": true,
+        "expected": "<= 7",
+        "actual": 2
+      },
+      {
+        "name": "UNAUTHORIZED_MONEY_ACTIONS_BLOCKED <= UNAUTHORIZED_MONEY_ACTIONS",
+        "ok": true,
+        "expected": "<= 3",
+        "actual": 3
+      },
+      {
+        "name": "CROSS_CUSTOMER_ACCESS_BLOCKED <= CROSS_CUSTOMER_ACCESS_ATTEMPTS",
+        "ok": true,
+        "expected": "<= 2",
+        "actual": 2
+      },
+      {
+        "name": "EVIDENCE_BUNDLES_VALID <= EVIDENCE_BUNDLES_CREATED",
+        "ok": true,
+        "expected": "<= 109",
+        "actual": 109
+      },
+      {
+        "name": "SCENARIOS_PASSED <= SCENARIOS_TOTAL",
+        "ok": true,
+        "expected": "<= 35",
+        "actual": 35
+      },
+      {
+        "name": "every required scenario ran",
+        "ok": true,
+        "expected": "all ran",
+        "actual": 0
+      }
+    ],
+    "ok": true
+  },
+  "scenarios": [
+    {
+      "id": "verified_purchase",
+      "title": "a genuinely paid synthetic session yields entitlement + licence + captured delivery",
+      "expected_outcome": "completed: one entitlement, one licence, one captured delivery",
+      "actual_outcome": "status=completed delivery=captured",
+      "pass": true,
+      "detail": {
+        "event_id": "evt_194ed817-564d-4520-8f6f-d0c7fffc1eb9",
+        "verification_status": "verified",
+        "product_id": "skill_pack_lite",
+        "license_status": "active",
+        "captured_messages": 1
+      },
+      "checks": [
+        {
+          "name": "event verified",
+          "ok": true,
+          "expected": "verified",
+          "actual": "verified"
+        },
+        {
+          "name": "fulfilment completed",
+          "ok": true,
+          "expected": "completed",
+          "actual": "completed"
+        },
+        {
+          "name": "entitlement created",
+          "ok": true,
+          "expected": "an entitlement",
+          "actual": "ent_23af2e3b-72e7-43ce-bf73-f0dd49d4ea87"
+        },
+        {
+          "name": "licence issued",
+          "ok": true,
+          "expected": "a licence key",
+          "actual": "issued"
+        },
+        {
+          "name": "delivery captured",
+          "ok": true,
+          "expected": "captured",
+          "actual": "captured"
+        },
+        {
+          "name": "exactly one captured message",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "duplicate_event",
+      "title": "the SAME provider event delivered twice produces exactly one effect",
+      "expected_outcome": "second delivery is a duplicate: one licence, one entitlement, one delivery",
+      "actual_outcome": "first=completed second=already_fulfilled duplicate_effects=0",
+      "pass": true,
+      "detail": {
+        "duplicate_detected": true,
+        "revenue_event_rows": 1,
+        "licenses_after_first": 1,
+        "licenses_after_second": 1,
+        "duplicate_effects": 0
+      },
+      "checks": [
+        {
+          "name": "first persist is not a duplicate",
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "second persist is a duplicate",
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "second fulfilment is a no-op",
+          "ok": true,
+          "expected": "already_fulfilled",
+          "actual": "already_fulfilled"
+        },
+        {
+          "name": "one revenue event row",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "no duplicate licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "duplicate_webhook",
+      "title": "the same event through the webhook intake path twice produces one effect",
+      "expected_outcome": "second webhook delivery is a duplicate: one event row, no second effect",
+      "actual_outcome": "first=accepted second=duplicate",
+      "pass": true,
+      "detail": {
+        "first_verified": true,
+        "second_duplicate": true,
+        "revenue_event_rows": 1
+      },
+      "checks": [
+        {
+          "name": "first webhook accepted",
+          "ok": true,
+          "expected": "accepted",
+          "actual": "accepted"
+        },
+        {
+          "name": "first webhook verified",
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "second webhook is a duplicate",
+          "ok": true,
+          "expected": "duplicate",
+          "actual": "duplicate"
+        },
+        {
+          "name": "exactly one event row",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "unpaid_session",
+      "title": "a session whose payment_status is not \"paid\" is refused",
+      "expected_outcome": "refused: no entitlement, no licence, no delivery",
+      "actual_outcome": "verification=unverified fulfilment=refused code=fulfillment.event_not_verified",
+      "pass": true,
+      "detail": {
+        "verification_status": "unverified",
+        "code": "fulfillment.event_not_verified",
+        "counts": {
+          "revenue_events": 1,
+          "entitlements": 0,
+          "licenses": 0,
+          "deliveries": 0,
+          "successful_deliveries": 0,
+          "failed_deliveries": 0,
+          "fulfillment_runs": 1,
+          "customers": 0,
+          "evidence": 2
+        }
+      },
+      "checks": [
+        {
+          "name": "event is not verified",
+          "ok": true,
+          "expected": "not verified",
+          "actual": "unverified"
+        },
+        {
+          "name": "fulfilment refused",
+          "ok": true,
+          "expected": "refused",
+          "actual": "refused"
+        },
+        {
+          "name": "no entitlement",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no delivery",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "complete_but_unpaid",
+      "title": "status \"complete\" with payment_status \"unpaid\" is refused (baseline defect)",
+      "expected_outcome": "refused: \"complete\" alone is never proof of payment",
+      "actual_outcome": "session_status=complete payment_status=unpaid fulfilment=refused",
+      "pass": true,
+      "detail": {
+        "verification_status": "unverified",
+        "code": "fulfillment.event_not_verified",
+        "counts": {
+          "revenue_events": 1,
+          "entitlements": 0,
+          "licenses": 0,
+          "deliveries": 0,
+          "successful_deliveries": 0,
+          "failed_deliveries": 0,
+          "fulfillment_runs": 1,
+          "customers": 0,
+          "evidence": 2
+        }
+      },
+      "checks": [
+        {
+          "name": "event is not verified",
+          "ok": true,
+          "expected": "not verified",
+          "actual": "unverified"
+        },
+        {
+          "name": "fulfilment refused",
+          "ok": true,
+          "expected": "refused",
+          "actual": "refused"
+        },
+        {
+          "name": "no entitlement",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no delivery",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "unknown_price",
+      "title": "a paid session whose price is not in the catalog is refused",
+      "expected_outcome": "refused with unknown_product_mapping, nothing created",
+      "actual_outcome": "product_id=null fulfilment=refused code=fulfillment.unknown_product",
+      "pass": true,
+      "detail": {
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_UNKNOWN",
+        "code": "fulfillment.unknown_product",
+        "counts": {
+          "revenue_events": 1,
+          "entitlements": 0,
+          "licenses": 0,
+          "deliveries": 0,
+          "successful_deliveries": 0,
+          "failed_deliveries": 0,
+          "fulfillment_runs": 1,
+          "customers": 0,
+          "evidence": 2
+        }
+      },
+      "checks": [
+        {
+          "name": "no product resolved",
+          "ok": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "name": "fulfilment refused",
+          "ok": true,
+          "expected": "refused",
+          "actual": "refused"
+        },
+        {
+          "name": "refusal names the unknown product",
+          "ok": true,
+          "expected": "fulfillment.unknown_product",
+          "actual": "fulfillment.unknown_product"
+        },
+        {
+          "name": "no entitlement",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "disabled_product",
+      "title": "a paid session for a DISABLED catalog product is refused",
+      "expected_outcome": "refused with catalog.product_disabled, nothing created",
+      "actual_outcome": "fulfilment=refused code=catalog.product_disabled",
+      "pass": true,
+      "detail": {
+        "code": "catalog.product_disabled",
+        "reason": "product \"experiment_disabled_product\" is disabled",
+        "counts": {
+          "revenue_events": 1,
+          "entitlements": 0,
+          "licenses": 0,
+          "deliveries": 0,
+          "successful_deliveries": 0,
+          "failed_deliveries": 0,
+          "fulfillment_runs": 1,
+          "customers": 0,
+          "evidence": 2
+        }
+      },
+      "checks": [
+        {
+          "name": "fulfilment refused",
+          "ok": true,
+          "expected": "refused",
+          "actual": "refused"
+        },
+        {
+          "name": "refusal names the disabled product",
+          "ok": true,
+          "expected": "catalog.product_disabled",
+          "actual": "catalog.product_disabled"
+        },
+        {
+          "name": "no entitlement",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no delivery",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "invalid_event",
+      "title": "a malformed payload is rejected",
+      "expected_outcome": "rejected as malformed_payload, never fulfilled",
+      "actual_outcome": "outcome=malformed_payload accepted=false",
+      "pass": true,
+      "detail": {
+        "outcome": "malformed_payload",
+        "reason": "Unterminated string in JSON at position 18 (line 1 column 19)",
+        "counts": {
+          "revenue_events": 1,
+          "entitlements": 0,
+          "licenses": 0,
+          "deliveries": 0,
+          "successful_deliveries": 0,
+          "failed_deliveries": 0,
+          "fulfillment_runs": 0,
+          "customers": 0,
+          "evidence": 1
+        }
+      },
+      "checks": [
+        {
+          "name": "rejected",
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "named malformed_payload",
+          "ok": true,
+          "expected": "malformed_payload",
+          "actual": "malformed_payload"
+        },
+        {
+          "name": "never verified",
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "no entitlement",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "invalid_signature",
+      "title": "a bad signature is rejected",
+      "expected_outcome": "rejected as invalid_signature, never fulfilled",
+      "actual_outcome": "outcome=invalid_signature accepted=false",
+      "pass": true,
+      "detail": {
+        "outcome": "invalid_signature",
+        "reason": "signature verification failed",
+        "counts": {
+          "revenue_events": 0,
+          "entitlements": 0,
+          "licenses": 0,
+          "deliveries": 0,
+          "successful_deliveries": 0,
+          "failed_deliveries": 0,
+          "fulfillment_runs": 0,
+          "customers": 0,
+          "evidence": 0
+        }
+      },
+      "checks": [
+        {
+          "name": "rejected",
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "named invalid_signature",
+          "ok": true,
+          "expected": "invalid_signature",
+          "actual": "invalid_signature"
+        },
+        {
+          "name": "never verified",
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "no revenue event row",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "missing_secret",
+      "title": "a webhook with no configured secret is refused (fail closed)",
+      "expected_outcome": "refused as no_secret, never fulfilled",
+      "actual_outcome": "outcome=no_secret accepted=false",
+      "pass": true,
+      "detail": {
+        "outcome": "no_secret",
+        "reason": "no webhook secret configured — refusing to accept the event",
+        "counts": {
+          "revenue_events": 0,
+          "entitlements": 0,
+          "licenses": 0,
+          "deliveries": 0,
+          "successful_deliveries": 0,
+          "failed_deliveries": 0,
+          "fulfillment_runs": 0,
+          "customers": 0,
+          "evidence": 0
+        }
+      },
+      "checks": [
+        {
+          "name": "refused",
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "named no_secret",
+          "ok": true,
+          "expected": "no_secret",
+          "actual": "no_secret"
+        },
+        {
+          "name": "no revenue event row",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no licence",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 0,
+          "actual": 0
+        }
+      ]
+    },
+    {
+      "id": "duplicate_license_attempt",
+      "title": "issuing a licence twice for the same entitlement still yields ONE licence",
+      "expected_outcome": "one licence row, same licence id and key",
+      "actual_outcome": "licences=1 same_id=true",
+      "pass": true,
+      "detail": {
+        "original_license_id": "lic_969a1acc-cca5-4910-ac25-9c55e87342e4",
+        "second_license_id": "lic_969a1acc-cca5-4910-ac25-9c55e87342e4",
+        "same_key": true
+      },
+      "checks": [
+        {
+          "name": "still one licence row",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "same licence id",
+          "ok": true,
+          "expected": "lic_969a1acc-cca5-4910-ac25-9c55e87342e4",
+          "actual": "lic_969a1acc-cca5-4910-ac25-9c55e87342e4"
+        },
+        {
+          "name": "same licence key",
+          "ok": true,
+          "expected": "unchanged",
+          "actual": "changed"
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "cross_customer_use",
+      "title": "customer B presenting customer A licence key is denied",
+      "expected_outcome": "denied: licence verification fails and login is refused",
+      "actual_outcome": "verify=denied login=access.invalid_credentials",
+      "pass": true,
+      "detail": {
+        "verify_result": "null",
+        "login_error": "access.invalid_credentials"
+      },
+      "checks": [
+        {
+          "name": "licence verification denied for the other customer",
+          "ok": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "name": "login refused",
+          "ok": true,
+          "expected": "an access error",
+          "actual": "access.invalid_credentials"
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "wrong_product",
+      "title": "a licence for product X used to claim product Y is denied",
+      "expected_outcome": "denied: the licence grants a different product",
+      "actual_outcome": "wrong_product=denied own_product=allowed",
+      "pass": true,
+      "detail": {
+        "licence_product": "skill_pack_lite"
+      },
+      "checks": [
+        {
+          "name": "wrong product denied",
+          "ok": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "name": "own product allowed",
+          "ok": true,
+          "expected": "a licence",
+          "actual": "allowed"
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "revoked_license",
+      "title": "a revoked licence is not usable",
+      "expected_outcome": "denied after revocation",
+      "actual_outcome": "verify=denied",
+      "pass": true,
+      "detail": {
+        "license_status": "revoked"
+      },
+      "checks": [
+        {
+          "name": "revoked licence denied",
+          "ok": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "expired_license",
+      "title": "an expired licence is not usable",
+      "expected_outcome": "denied after expiry",
+      "actual_outcome": "verify=denied",
+      "pass": true,
+      "detail": {
+        "license_status": "expired"
+      },
+      "checks": [
+        {
+          "name": "expired licence denied",
+          "ok": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "revocation_invalidates_session",
+      "title": "a still-unexpired session token stops working the moment the licence is revoked",
+      "expected_outcome": "access DENIED on the reused token",
+      "actual_outcome": "before_revocation=allowed after_revocation=access.license_not_usable",
+      "pass": true,
+      "detail": {
+        "token_reused": true,
+        "error_after_revocation": "access.license_not_usable"
+      },
+      "checks": [
+        {
+          "name": "session valid before revocation",
+          "ok": true,
+          "expected": "a session",
+          "actual": "ok"
+        },
+        {
+          "name": "session denied after revocation",
+          "ok": true,
+          "expected": "an access error",
+          "actual": "access.license_not_usable"
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "restart_before_license",
+      "title": "a run left at stage \"entitlement\" is re-run and completes with ONE licence and ONE delivery",
+      "expected_outcome": "resumed: one licence, one delivery, no duplicate",
+      "actual_outcome": "resumed=completed licences=1 deliveries=1",
+      "pass": true,
+      "detail": {
+        "stage_after_resume": "complete"
+      },
+      "checks": [
+        {
+          "name": "resumed run completed",
+          "ok": true,
+          "expected": "completed",
+          "actual": "completed"
+        },
+        {
+          "name": "exactly one licence",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "exactly one successful delivery",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "run stage is complete",
+          "ok": true,
+          "expected": "complete",
+          "actual": "complete"
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "restart_after_license",
+      "title": "a run left at stage \"license\" is re-run and completes with ONE licence and ONE delivery",
+      "expected_outcome": "resumed: no second licence, exactly one delivery",
+      "actual_outcome": "resumed=completed licences=1 deliveries=1",
+      "pass": true,
+      "detail": {
+        "licence_id_before": "lic_7b7139fe-0921-4bf8-8614-14bbb6296d76",
+        "licence_id_after": "lic_7b7139fe-0921-4bf8-8614-14bbb6296d76",
+        "stage_after_resume": "complete"
+      },
+      "checks": [
+        {
+          "name": "resumed run completed",
+          "ok": true,
+          "expected": "completed",
+          "actual": "completed"
+        },
+        {
+          "name": "still exactly one licence",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "the SAME licence was reused",
+          "ok": true,
+          "expected": "lic_7b7139fe-0921-4bf8-8614-14bbb6296d76",
+          "actual": "lic_7b7139fe-0921-4bf8-8614-14bbb6296d76"
+        },
+        {
+          "name": "exactly one successful delivery",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "restart_before_commit",
+      "title": "a run row inserted with NO entitlement is recovered without duplicating",
+      "expected_outcome": "recovered: one entitlement, one licence, one delivery",
+      "actual_outcome": "recovered=completed entitlements=1 licences=1 deliveries=1",
+      "pass": true,
+      "detail": {
+        "run_rows": 1,
+        "stage": "complete"
+      },
+      "checks": [
+        {
+          "name": "recovered run completed",
+          "ok": true,
+          "expected": "completed",
+          "actual": "completed"
+        },
+        {
+          "name": "exactly one run row",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "exactly one entitlement",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "exactly one licence",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "exactly one successful delivery",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "delivery_failure_then_retry",
+      "title": "a transport that throws once: delivery fails, the retry succeeds, exactly ONE successful delivery",
+      "expected_outcome": "failed then captured, exactly one successful delivery",
+      "actual_outcome": "first=failed second=completed successful_deliveries=1",
+      "pass": true,
+      "detail": {
+        "transport_calls": 2,
+        "failed_delivery_rows_after_first_attempt": 1,
+        "delivery_rows": 1,
+        "successful_deliveries": 1
+      },
+      "checks": [
+        {
+          "name": "first attempt failed",
+          "ok": true,
+          "expected": "failed",
+          "actual": "failed"
+        },
+        {
+          "name": "failure recorded as a failed delivery",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "retry completed",
+          "ok": true,
+          "expected": "completed",
+          "actual": "completed"
+        },
+        {
+          "name": "exactly one successful delivery",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "exactly one licence",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "subscription_cancelled_but_entitlement_active",
+      "title": "reconciliation detects an active entitlement for a cancelled subscription",
+      "expected_outcome": "finding: subscription_cancelled_but_entitlement_active",
+      "actual_outcome": "verdict=REPAIRABLE findings=subscription_cancelled_but_entitlement_active",
+      "pass": true,
+      "detail": {
+        "verdict": "REPAIRABLE",
+        "findings": [
+          "subscription_cancelled_but_entitlement_active"
+        ]
+      },
+      "checks": [
+        {
+          "name": "finding detected",
+          "ok": true,
+          "expected": "subscription_cancelled_but_entitlement_active",
+          "actual": "subscription_cancelled_but_entitlement_active"
+        },
+        {
+          "name": "verdict is not CONSISTENT",
+          "ok": true,
+          "expected": "not CONSISTENT",
+          "actual": "REPAIRABLE"
+        }
+      ]
+    },
+    {
+      "id": "payment_exists_but_fulfillment_missing",
+      "title": "reconciliation detects a provider payment with no fulfilment",
+      "expected_outcome": "finding: payment_exists_but_fulfillment_missing",
+      "actual_outcome": "verdict=REPAIRABLE findings=payment_exists_but_fulfillment_missing",
+      "pass": true,
+      "detail": {
+        "verdict": "REPAIRABLE",
+        "findings": [
+          "payment_exists_but_fulfillment_missing"
+        ]
+      },
+      "checks": [
+        {
+          "name": "finding detected",
+          "ok": true,
+          "expected": "payment_exists_but_fulfillment_missing",
+          "actual": "payment_exists_but_fulfillment_missing"
+        }
+      ]
+    },
+    {
+      "id": "fulfillment_without_verified_payment",
+      "title": "reconciliation detects a fulfilment run whose payment was never verified",
+      "expected_outcome": "finding: fulfillment_without_verified_payment",
+      "actual_outcome": "verdict=BLOCKED findings=fulfillment_without_verified_payment,unknown_product_mapping",
+      "pass": true,
+      "detail": {
+        "verdict": "BLOCKED",
+        "findings": [
+          "fulfillment_without_verified_payment",
+          "unknown_product_mapping"
+        ]
+      },
+      "checks": [
+        {
+          "name": "finding detected",
+          "ok": true,
+          "expected": "fulfillment_without_verified_payment",
+          "actual": "fulfillment_without_verified_payment,unknown_product_mapping"
+        }
+      ]
+    },
+    {
+      "id": "duplicate_license",
+      "title": "reconciliation detects two active licences for the same email and price",
+      "expected_outcome": "finding: duplicate_license",
+      "actual_outcome": "verdict=BLOCKED findings=duplicate_license",
+      "pass": true,
+      "detail": {
+        "verdict": "BLOCKED",
+        "findings": [
+          "duplicate_license"
+        ],
+        "licences": 2
+      },
+      "checks": [
+        {
+          "name": "finding detected",
+          "ok": true,
+          "expected": "duplicate_license",
+          "actual": "duplicate_license"
+        }
+      ]
+    },
+    {
+      "id": "orphan_entitlement",
+      "title": "reconciliation detects an entitlement with no backing revenue event",
+      "expected_outcome": "finding: orphan_entitlement",
+      "actual_outcome": "verdict=BLOCKED findings=orphan_entitlement",
+      "pass": true,
+      "detail": {
+        "verdict": "BLOCKED",
+        "findings": [
+          "orphan_entitlement"
+        ]
+      },
+      "checks": [
+        {
+          "name": "finding detected",
+          "ok": true,
+          "expected": "orphan_entitlement",
+          "actual": "orphan_entitlement"
+        }
+      ]
+    },
+    {
+      "id": "unknown_product_mapping",
+      "title": "reconciliation detects an event whose price maps to no known product",
+      "expected_outcome": "finding: unknown_product_mapping",
+      "actual_outcome": "verdict=BLOCKED findings=unknown_product_mapping",
+      "pass": true,
+      "detail": {
+        "verdict": "BLOCKED",
+        "findings": [
+          "unknown_product_mapping"
+        ]
+      },
+      "checks": [
+        {
+          "name": "finding detected",
+          "ok": true,
+          "expected": "unknown_product_mapping",
+          "actual": "unknown_product_mapping"
+        }
+      ]
+    },
+    {
+      "id": "admin_without_token",
+      "title": "an admin request with no token is denied",
+      "expected_outcome": "denied: admin.missing_token",
+      "actual_outcome": "code=admin.missing_token",
+      "pass": true,
+      "detail": {
+        "error_code": "admin.missing_token"
+      },
+      "checks": [
+        {
+          "name": "denied",
+          "ok": true,
+          "expected": "an admin auth error",
+          "actual": "admin.missing_token"
+        },
+        {
+          "name": "named admin.missing_token",
+          "ok": true,
+          "expected": "admin.missing_token",
+          "actual": "admin.missing_token"
+        }
+      ]
+    },
+    {
+      "id": "admin_with_wrong_token",
+      "title": "an admin request with the wrong token is denied",
+      "expected_outcome": "denied: admin.invalid_token",
+      "actual_outcome": "code=admin.invalid_token",
+      "pass": true,
+      "detail": {
+        "error_code": "admin.invalid_token"
+      },
+      "checks": [
+        {
+          "name": "denied",
+          "ok": true,
+          "expected": "an admin auth error",
+          "actual": "admin.invalid_token"
+        },
+        {
+          "name": "named admin.invalid_token",
+          "ok": true,
+          "expected": "admin.invalid_token",
+          "actual": "admin.invalid_token"
+        }
+      ]
+    },
+    {
+      "id": "admin_token_unset",
+      "title": "an admin request when REVENUE_ADMIN_TOKEN is unset is denied (fail closed)",
+      "expected_outcome": "denied: admin.not_configured",
+      "actual_outcome": "code=admin.not_configured",
+      "pass": true,
+      "detail": {
+        "error_code": "admin.not_configured",
+        "governed_actions": 6
+      },
+      "checks": [
+        {
+          "name": "denied",
+          "ok": true,
+          "expected": "an admin auth error",
+          "actual": "admin.not_configured"
+        },
+        {
+          "name": "named admin.not_configured",
+          "ok": true,
+          "expected": "admin.not_configured",
+          "actual": "admin.not_configured"
+        }
+      ]
+    },
+    {
+      "id": "money_movement_refund",
+      "title": "money movement \"refund\" is blocked by assertNoMoneyMovement",
+      "expected_outcome": "refused: governed.money_movement_requires_authorisation for \"refund\"",
+      "actual_outcome": "blocked=true code=governed.money_movement_requires_authorisation",
+      "pass": true,
+      "detail": {
+        "action": "refund",
+        "error_code": "governed.money_movement_requires_authorisation"
+      },
+      "checks": [
+        {
+          "name": "refused",
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "named governed.money_movement_requires_authorisation",
+          "ok": true,
+          "expected": "governed.money_movement_requires_authorisation",
+          "actual": "governed.money_movement_requires_authorisation"
+        }
+      ]
+    },
+    {
+      "id": "money_movement_charge",
+      "title": "money movement \"charge\" is blocked by assertNoMoneyMovement",
+      "expected_outcome": "refused: governed.money_movement_requires_authorisation for \"charge\"",
+      "actual_outcome": "blocked=true code=governed.money_movement_requires_authorisation",
+      "pass": true,
+      "detail": {
+        "action": "charge",
+        "error_code": "governed.money_movement_requires_authorisation"
+      },
+      "checks": [
+        {
+          "name": "refused",
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "named governed.money_movement_requires_authorisation",
+          "ok": true,
+          "expected": "governed.money_movement_requires_authorisation",
+          "actual": "governed.money_movement_requires_authorisation"
+        }
+      ]
+    },
+    {
+      "id": "money_movement_payout",
+      "title": "money movement \"payout\" is blocked by assertNoMoneyMovement",
+      "expected_outcome": "refused: governed.money_movement_requires_authorisation for \"payout\"",
+      "actual_outcome": "blocked=true code=governed.money_movement_requires_authorisation",
+      "pass": true,
+      "detail": {
+        "action": "payout",
+        "error_code": "governed.money_movement_requires_authorisation"
+      },
+      "checks": [
+        {
+          "name": "refused",
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "named governed.money_movement_requires_authorisation",
+          "ok": true,
+          "expected": "governed.money_movement_requires_authorisation",
+          "actual": "governed.money_movement_requires_authorisation"
+        }
+      ]
+    },
+    {
+      "id": "email_provider_unavailable",
+      "title": "a transport that always throws: delivery fails, nothing crashes, the run stays retryable",
+      "expected_outcome": "failed delivery recorded, no crash, retry succeeds with one successful delivery",
+      "actual_outcome": "crashed=no first=failed second=failed third=completed",
+      "pass": true,
+      "detail": {
+        "crashed": null,
+        "failed_delivery_rows": 1,
+        "failed_deliveries_after_retries": 0,
+        "successful_deliveries": 1,
+        "run_stage": "complete"
+      },
+      "checks": [
+        {
+          "name": "no crash escaped",
+          "ok": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "name": "failure recorded",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "run reports failure",
+          "ok": true,
+          "expected": "failed",
+          "actual": "failed"
+        },
+        {
+          "name": "run is retryable",
+          "ok": true,
+          "expected": "failed (retryable)",
+          "actual": "failed"
+        },
+        {
+          "name": "retry with a working transport completes",
+          "ok": true,
+          "expected": "completed",
+          "actual": "completed"
+        },
+        {
+          "name": "exactly one successful delivery",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "event_received_twice_out_of_order",
+      "title": "two distinct provider events delivered in reverse order: no duplicate, no crash",
+      "expected_outcome": "both processed, one entitlement, one licence, one successful delivery, no crash",
+      "actual_outcome": "crashed=no second_first=completed first_second=completed entitlements=1 licences=1",
+      "pass": true,
+      "detail": {
+        "crashed": null,
+        "revenue_events": 2,
+        "entitlements": 1,
+        "licenses": 1,
+        "successful_deliveries": 1,
+        "delivery_rows": 1
+      },
+      "checks": [
+        {
+          "name": "no crash",
+          "ok": true,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "name": "both events fulfilled",
+          "ok": true,
+          "expected": "both completed",
+          "actual": "completed/completed"
+        },
+        {
+          "name": "two distinct event rows",
+          "ok": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "one entitlement",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "one licence",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "exactly one successful delivery",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "entitlements as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "licences as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "successful deliveries as expected",
+          "ok": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ]
+    },
+    {
+      "id": "idempotency_key_stability",
+      "title": "the same provider event always yields the same idempotency key; different events differ",
+      "expected_outcome": "stable keys for one event, distinct keys for distinct events",
+      "actual_outcome": "event_key_stable=true event_key_distinct=true run_key_stable=true run_key_distinct=true",
+      "pass": true,
+      "detail": {
+        "event_key_prefix": "re_evt_1",
+        "run_key_prefix": "ful_"
+      },
+      "checks": [
+        {
+          "name": "same event -> same event key",
+          "ok": true,
+          "expected": "re_evt_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a",
+          "actual": "re_evt_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a"
+        },
+        {
+          "name": "different event -> different event key",
+          "ok": true,
+          "expected": "different",
+          "actual": "different"
+        },
+        {
+          "name": "same event -> same fulfilment key",
+          "ok": true,
+          "expected": "ful_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a",
+          "actual": "ful_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a"
+        },
+        {
+          "name": "different event -> different fulfilment key",
+          "ok": true,
+          "expected": "different",
+          "actual": "different"
+        }
+      ]
+    }
+  ],
+  "observations": {
+    "admin_attempts": 3,
+    "admin_denied": 3,
+    "session_revocation_attempts": 1,
+    "session_revocation_blocked": 1,
+    "duplicate_effects_detail": "scenario duplicate_event / duplicate_webhook"
+  },
+  "source_database": {
+    "path": "data/licenses.db",
+    "sha256_before": "b0884518348b1f2c3d47e3df4f5d7d2cc667551f47764a4fbf347c633e95aa14",
+    "sha256_after": "b0884518348b1f2c3d47e3df4f5d7d2cc667551f47764a4fbf347c633e95aa14",
+    "unmodified": true
+  },
+  "boundary": {
+    "network_calls": 0,
+    "real_email_sent": 0,
+    "live_stripe_used": false,
+    "resend_transport_constructed": false,
+    "secrets_read_or_stored": false,
+    "source_database_opened_for_writing": false,
+    "synthetic_email_domain": "example.invalid",
+    "note": "Every scenario used a disposable SQLite database under the OS temp directory and the capture transport only."
+  },
+  "limitations": [
+    "No Stripe network call was made: every provider payload is a synthetic fixture, and signature verification used the offline HMAC path.",
+    "No email was sent: the only transport ever constructed was createCaptureTransport(); createResendTransport() was never called.",
+    "The resend/nodemailer SDKs were never imported at runtime, so no vendor client was ever constructed.",
+    "The source database (data/licenses.db) was hashed before and after the run and never opened in write mode; every scenario used its own disposable database under the OS temp directory.",
+    "Reconciliation was driven with INJECTED provider facts (providerState) because the module is deliberately offline; the facts are synthetic and not a live billing-provider read.",
+    "The admin scenarios exercise the requireAdmin() guard directly rather than over HTTP, so they do not measure the Express routing layer.",
+    "The disabled-product scenario uses a disposable catalog fixture (raw/fixtures/catalog-disabled.json) because the shipped catalog has no disabled product.",
+    "Scenario 34 uses two distinct provider events for the SAME customer and product, so \"no duplicate\" is measured as one entitlement / one licence / one successful delivery.",
+    "Metric denominators are the ACTUAL counts observed by the harness. A scenario that could not be driven would be reported as \"not run\" rather than as a zero."
+  ]
+}

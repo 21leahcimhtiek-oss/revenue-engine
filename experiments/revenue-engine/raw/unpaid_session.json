@@ -1,0 +1,146 @@
+{
+  "scenario": "unpaid_session",
+  "title": "a session whose payment_status is not \"paid\" is refused",
+  "expected_outcome": "refused: no entitlement, no licence, no delivery",
+  "actual_outcome": "verification=unverified fulfilment=refused code=fulfillment.event_not_verified",
+  "pass": true,
+  "checks": [
+    {
+      "name": "event is not verified",
+      "ok": true,
+      "expected": "not verified",
+      "actual": "unverified"
+    },
+    {
+      "name": "fulfilment refused",
+      "ok": true,
+      "expected": "refused",
+      "actual": "refused"
+    },
+    {
+      "name": "no entitlement",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "no licence",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "no delivery",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "detail": {
+    "verification_status": "unverified",
+    "code": "fulfillment.event_not_verified",
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 0,
+      "evidence": 2
+    }
+  },
+  "generated_at": "2026-10-24T03:18:55.212Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 0,
+      "evidence": 2
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_caa3ac84-21de-4578-90b7-88ca1a1840f6",
+        "provider": "stripe",
+        "provider_event_id": "cs_synthetic_s04",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s04",
+        "product_id": "skill_pack_lite",
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "payment_reference": null,
+        "amount": 4900,
+        "currency": "usd",
+        "verification_status": "unverified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_8a7d46d00e788edb04e2619c1bf40c48a991c9330ee2847ec9c7083a657b3487",
+        "raw_payload_hash": "36d4117bc37cf0d571cddff62eb8de3069fa9041690dc7459199b2ea3d0b24f8",
+        "source_mode": "synthetic",
+        "payload_json": "{\"provider_event_id\":\"cs_synthetic_s04\",\"event_type\":\"checkout.session.completed\",\"session\":{\"kind\":\"checkout_session\",\"present\":true,\"id\":\"cs_synthetic_s04\",\"object\":\"checkout.session\",\"status\":\"complete\",\"payment_status\":\"unpaid\",\"amount_total\":4900,\"currency\":\"usd\",\"mode\":\"payment\",\"customer\":\"cus_synthetic_s04\",\"subscription\":null,\"payment_intent\":null,\"client_reference_id\":null,\"customer_email\":\"synthetic.buyer.a@example.invalid\",\"created\":1767225600,\"line_item_price_ids\":[\"price_SYNTHETIC_EXPERIMENT_LITE\"]},\"object\":null}"
+      }
+    ],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [
+      {
+        "id": "ful_862e5a49-ae58-465e-adba-f770dedac167",
+        "idempotency_key": "ful_8a7d46d00e788edb04e2619c1bf40c48a991c9330ee2847ec9c7083a657b3487",
+        "event_id": "evt_caa3ac84-21de-4578-90b7-88ca1a1840f6",
+        "customer_id": null,
+        "entitlement_id": null,
+        "license_id": null,
+        "stage": "refused",
+        "status": "refused",
+        "attempts": 1,
+        "last_error": "event verification_status is \"unverified\", not \"verified\""
+      }
+    ],
+    "evidence": [
+      {
+        "id": "evd_699d8e91-8c7d-4c15-bc68-94400758faf7",
+        "kind": "fulfillment.stage.started",
+        "subject_id": "ful_862e5a49-ae58-465e-adba-f770dedac167",
+        "payload_json": "{\"stage\":\"started\",\"status\":\"running\",\"event_id\":\"evt_caa3ac84-21de-4578-90b7-88ca1a1840f6\",\"idempotency_key\":\"ful_8a7d46d00e788edb04e2619c1bf40c48a991c9330ee2847ec9c7083a657b3487\"}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_235d67a9-2c32-465a-9153-64a45adc7742",
+        "kind": "fulfillment.stage.refused",
+        "subject_id": "ful_862e5a49-ae58-465e-adba-f770dedac167",
+        "payload_json": "{\"stage\":\"refused\",\"status\":\"refused\",\"event_id\":\"evt_caa3ac84-21de-4578-90b7-88ca1a1840f6\",\"entitlement_id\":null,\"license_id\":null,\"idempotency_key\":\"ful_8a7d46d00e788edb04e2619c1bf40c48a991c9330ee2847ec9c7083a657b3487\",\"last_error\":\"event verification_status is \\\"unverified\\\", not \\\"verified\\\"\"}",
+        "source_fingerprint": null
+      }
+    ]
+  }
+}

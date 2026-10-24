@@ -1,0 +1,146 @@
+{
+  "scenario": "disabled_product",
+  "title": "a paid session for a DISABLED catalog product is refused",
+  "expected_outcome": "refused with catalog.product_disabled, nothing created",
+  "actual_outcome": "fulfilment=refused code=catalog.product_disabled",
+  "pass": true,
+  "checks": [
+    {
+      "name": "fulfilment refused",
+      "ok": true,
+      "expected": "refused",
+      "actual": "refused"
+    },
+    {
+      "name": "refusal names the disabled product",
+      "ok": true,
+      "expected": "catalog.product_disabled",
+      "actual": "catalog.product_disabled"
+    },
+    {
+      "name": "no entitlement",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "no licence",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "no delivery",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "detail": {
+    "code": "catalog.product_disabled",
+    "reason": "product \"experiment_disabled_product\" is disabled",
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 0,
+      "evidence": 2
+    }
+  },
+  "generated_at": "2026-10-24T03:18:55.273Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 1,
+      "customers": 0,
+      "evidence": 2
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_63c809bf-4b80-4d34-a5b7-3939a5c91b5b",
+        "provider": "stripe",
+        "provider_event_id": "evt_synthetic_disabled_1",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s07",
+        "product_id": "experiment_disabled_product",
+        "price_reference": "PRICE_EXPERIMENT_DISABLED",
+        "payment_reference": null,
+        "amount": 4900,
+        "currency": "usd",
+        "verification_status": "verified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_158d94c8621abc1bd863ae8ebe835dee1859bd16fdcfebd9aac39e36eda3eb9f",
+        "raw_payload_hash": "8851baab4590de3740b1f9d7dba76b73090a4a94cc2d34f5c2ee58f2d5053ca4",
+        "source_mode": "synthetic",
+        "payload_json": "{\"note\":\"synthetic disabled-product fixture\"}"
+      }
+    ],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [
+      {
+        "id": "ful_e1277377-10e1-4023-be74-6486d396729c",
+        "idempotency_key": "ful_158d94c8621abc1bd863ae8ebe835dee1859bd16fdcfebd9aac39e36eda3eb9f",
+        "event_id": null,
+        "customer_id": null,
+        "entitlement_id": null,
+        "license_id": null,
+        "stage": "refused",
+        "status": "refused",
+        "attempts": 1,
+        "last_error": "product \"experiment_disabled_product\" is disabled"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "evd_03b07452-90fd-4f0e-9199-35774a2462e2",
+        "kind": "fulfillment.stage.started",
+        "subject_id": "ful_e1277377-10e1-4023-be74-6486d396729c",
+        "payload_json": "{\"stage\":\"started\",\"status\":\"running\",\"event_id\":null,\"idempotency_key\":\"ful_158d94c8621abc1bd863ae8ebe835dee1859bd16fdcfebd9aac39e36eda3eb9f\"}",
+        "source_fingerprint": null
+      },
+      {
+        "id": "evd_f3ea728e-b6b3-4478-942f-50dee0f052f5",
+        "kind": "fulfillment.stage.refused",
+        "subject_id": "ful_e1277377-10e1-4023-be74-6486d396729c",
+        "payload_json": "{\"stage\":\"refused\",\"status\":\"refused\",\"event_id\":null,\"entitlement_id\":null,\"license_id\":null,\"idempotency_key\":\"ful_158d94c8621abc1bd863ae8ebe835dee1859bd16fdcfebd9aac39e36eda3eb9f\",\"last_error\":\"product \\\"experiment_disabled_product\\\" is disabled\"}",
+        "source_fingerprint": null
+      }
+    ]
+  }
+}

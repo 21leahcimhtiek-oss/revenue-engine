@@ -5,3 +5,13 @@ data/*.db-*
 *.err
 .env
 .env.*
+
+# ── SECRETS - never commit these ─────────────────────────────────────────────
+# data/stripe-whsec.txt holds a LIVE Stripe webhook signing secret written by
+# the Stripe CLI bridge. It must never be committed.
+data/stripe-whsec.txt
+*.tmp
+
+# Local run debris (not product source)
+err.txt
+out.txt

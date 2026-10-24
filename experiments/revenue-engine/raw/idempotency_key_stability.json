@@ -1,0 +1,44 @@
+{
+  "scenario": "idempotency_key_stability",
+  "title": "the same provider event always yields the same idempotency key; different events differ",
+  "expected_outcome": "stable keys for one event, distinct keys for distinct events",
+  "actual_outcome": "event_key_stable=true event_key_distinct=true run_key_stable=true run_key_distinct=true",
+  "pass": true,
+  "checks": [
+    {
+      "name": "same event -> same event key",
+      "ok": true,
+      "expected": "re_evt_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a",
+      "actual": "re_evt_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a"
+    },
+    {
+      "name": "different event -> different event key",
+      "ok": true,
+      "expected": "different",
+      "actual": "different"
+    },
+    {
+      "name": "same event -> same fulfilment key",
+      "ok": true,
+      "expected": "ful_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a",
+      "actual": "ful_1010c0db12ca84a279327614764885eb622a2d6f4df5e621650115b5e11a500a"
+    },
+    {
+      "name": "different event -> different fulfilment key",
+      "ok": true,
+      "expected": "different",
+      "actual": "different"
+    }
+  ],
+  "detail": {
+    "event_key_prefix": "re_evt_1",
+    "run_key_prefix": "ful_"
+  },
+  "generated_at": "2026-10-24T03:18:55.698Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  }
+}

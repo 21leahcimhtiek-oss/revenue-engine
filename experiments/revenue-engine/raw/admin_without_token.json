@@ -1,0 +1,31 @@
+{
+  "scenario": "admin_without_token",
+  "title": "an admin request with no token is denied",
+  "expected_outcome": "denied: admin.missing_token",
+  "actual_outcome": "code=admin.missing_token",
+  "pass": true,
+  "checks": [
+    {
+      "name": "denied",
+      "ok": true,
+      "expected": "an admin auth error",
+      "actual": "admin.missing_token"
+    },
+    {
+      "name": "named admin.missing_token",
+      "ok": true,
+      "expected": "admin.missing_token",
+      "actual": "admin.missing_token"
+    }
+  ],
+  "detail": {
+    "error_code": "admin.missing_token"
+  },
+  "generated_at": "2026-10-24T03:18:55.654Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  }
+}

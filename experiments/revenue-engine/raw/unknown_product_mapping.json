@@ -1,0 +1,67 @@
+{
+  "scenario": "unknown_product_mapping",
+  "title": "reconciliation detects an event whose price maps to no known product",
+  "expected_outcome": "finding: unknown_product_mapping",
+  "actual_outcome": "verdict=BLOCKED findings=unknown_product_mapping",
+  "pass": true,
+  "checks": [
+    {
+      "name": "finding detected",
+      "ok": true,
+      "expected": "unknown_product_mapping",
+      "actual": "unknown_product_mapping"
+    }
+  ],
+  "detail": {
+    "verdict": "BLOCKED",
+    "findings": [
+      "unknown_product_mapping"
+    ]
+  },
+  "generated_at": "2026-10-24T03:18:55.653Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 0
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_7d67d2ac-d2e0-4ab3-a1ee-fa9e1ca38f80",
+        "provider": "stripe",
+        "provider_event_id": "evt_synthetic_unknown_price_1",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s26",
+        "product_id": null,
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_UNKNOWN",
+        "payment_reference": null,
+        "amount": null,
+        "currency": null,
+        "verification_status": "verified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_01507993dd826ba0cf0de922bcaf7b4d369f81fabce86bbe7c98d89dad5ae6bd",
+        "raw_payload_hash": "a65c2bb0a0c697dc668f05e0651398e4e27c20400f20d5f04d1827f751d38665",
+        "source_mode": "manual",
+        "payload_json": "{\"note\":\"synthetic unknown price event\"}"
+      }
+    ],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [],
+    "evidence": []
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "scenario": "money_movement_payout",
+  "title": "money movement \"payout\" is blocked by assertNoMoneyMovement",
+  "expected_outcome": "refused: governed.money_movement_requires_authorisation for \"payout\"",
+  "actual_outcome": "blocked=true code=governed.money_movement_requires_authorisation",
+  "pass": true,
+  "checks": [
+    {
+      "name": "refused",
+      "ok": true,
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "named governed.money_movement_requires_authorisation",
+      "ok": true,
+      "expected": "governed.money_movement_requires_authorisation",
+      "actual": "governed.money_movement_requires_authorisation"
+    }
+  ],
+  "detail": {
+    "action": "payout",
+    "error_code": "governed.money_movement_requires_authorisation"
+  },
+  "generated_at": "2026-10-24T03:18:55.655Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  }
+}

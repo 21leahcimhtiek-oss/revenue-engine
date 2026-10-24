@@ -1,0 +1,47 @@
+{
+  "scenario": "payment_exists_but_fulfillment_missing",
+  "title": "reconciliation detects a provider payment with no fulfilment",
+  "expected_outcome": "finding: payment_exists_but_fulfillment_missing",
+  "actual_outcome": "verdict=REPAIRABLE findings=payment_exists_but_fulfillment_missing",
+  "pass": true,
+  "checks": [
+    {
+      "name": "finding detected",
+      "ok": true,
+      "expected": "payment_exists_but_fulfillment_missing",
+      "actual": "payment_exists_but_fulfillment_missing"
+    }
+  ],
+  "detail": {
+    "verdict": "REPAIRABLE",
+    "findings": [
+      "payment_exists_but_fulfillment_missing"
+    ]
+  },
+  "generated_at": "2026-10-24T03:18:55.576Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 0,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 0
+    },
+    "revenue_events": [],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [],
+    "evidence": []
+  }
+}

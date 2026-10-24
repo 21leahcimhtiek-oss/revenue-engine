@@ -1,0 +1,98 @@
+{
+  "scenario": "invalid_signature",
+  "title": "a bad signature is rejected",
+  "expected_outcome": "rejected as invalid_signature, never fulfilled",
+  "actual_outcome": "outcome=invalid_signature accepted=false",
+  "pass": true,
+  "checks": [
+    {
+      "name": "rejected",
+      "ok": true,
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "named invalid_signature",
+      "ok": true,
+      "expected": "invalid_signature",
+      "actual": "invalid_signature"
+    },
+    {
+      "name": "never verified",
+      "ok": true,
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "no revenue event row",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "no licence",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "detail": {
+    "outcome": "invalid_signature",
+    "reason": "signature verification failed",
+    "counts": {
+      "revenue_events": 0,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 0
+    }
+  },
+  "generated_at": "2026-10-24T03:18:55.312Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 0,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 0
+    },
+    "revenue_events": [],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [],
+    "evidence": []
+  }
+}

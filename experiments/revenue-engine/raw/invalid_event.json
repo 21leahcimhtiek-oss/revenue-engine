@@ -1,0 +1,126 @@
+{
+  "scenario": "invalid_event",
+  "title": "a malformed payload is rejected",
+  "expected_outcome": "rejected as malformed_payload, never fulfilled",
+  "actual_outcome": "outcome=malformed_payload accepted=false",
+  "pass": true,
+  "checks": [
+    {
+      "name": "rejected",
+      "ok": true,
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "named malformed_payload",
+      "ok": true,
+      "expected": "malformed_payload",
+      "actual": "malformed_payload"
+    },
+    {
+      "name": "never verified",
+      "ok": true,
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "no entitlement",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "no licence",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "detail": {
+    "outcome": "malformed_payload",
+    "reason": "Unterminated string in JSON at position 18 (line 1 column 19)",
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 1
+    }
+  },
+  "generated_at": "2026-10-24T03:18:55.292Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 1
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_1dd20735-93dc-43f7-9efc-722ec7c15e11",
+        "provider": "stripe",
+        "provider_event_id": "malformed_5ca5d56825091d894245ce9762ebe5a8",
+        "event_type": "unknown",
+        "customer_email": null,
+        "provider_customer_id": null,
+        "product_id": null,
+        "price_reference": null,
+        "payment_reference": null,
+        "amount": null,
+        "currency": null,
+        "verification_status": "rejected",
+        "processing_status": "rejected",
+        "idempotency_key": "re_evt_7e36fc978e34b1810c9f2aec43a850fb4fd6045feffeab5bada613b7a81c6fe1",
+        "raw_payload_hash": "5ca5d56825091d894245ce9762ebe5a8240fe38073518325e422f490934ce672",
+        "source_mode": "webhook",
+        "payload_json": "{\"rejected\":true,\"reason\":\"malformed_payload\"}"
+      }
+    ],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [],
+    "evidence": [
+      {
+        "id": "evd_7d34052e-b082-42f5-886c-ae5df93c8404",
+        "kind": "webhook.rejected",
+        "subject_id": "evt_1dd20735-93dc-43f7-9efc-722ec7c15e11",
+        "payload_json": "{\"reason\":\"malformed_payload\",\"event_type\":\"unknown\"}",
+        "source_fingerprint": "5ca5d56825091d894245ce9762ebe5a8240fe38073518325e422f490934ce672"
+      }
+    ]
+  }
+}

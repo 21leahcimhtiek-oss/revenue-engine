@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "currency": "usd",
+  "description": "Disposable experiment fixture: a disabled product.",
+  "products": [
+    {
+      "product_id": "experiment_disabled_product",
+      "product_name": "Experiment Disabled Product",
+      "product_type": "one_time",
+      "price_reference": "PRICE_EXPERIMENT_DISABLED",
+      "entitlement_type": "experiment_disabled",
+      "license_policy": "perpetual",
+      "fulfillment_type": "license_email",
+      "delivery_artifact": "license_key",
+      "renewal_policy": "none",
+      "expiration_policy": "never",
+      "status": "disabled"
+    }
+  ]
+}

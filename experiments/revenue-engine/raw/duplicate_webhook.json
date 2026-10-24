@@ -1,0 +1,117 @@
+{
+  "scenario": "duplicate_webhook",
+  "title": "the same event through the webhook intake path twice produces one effect",
+  "expected_outcome": "second webhook delivery is a duplicate: one event row, no second effect",
+  "actual_outcome": "first=accepted second=duplicate",
+  "pass": true,
+  "checks": [
+    {
+      "name": "first webhook accepted",
+      "ok": true,
+      "expected": "accepted",
+      "actual": "accepted"
+    },
+    {
+      "name": "first webhook verified",
+      "ok": true,
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "second webhook is a duplicate",
+      "ok": true,
+      "expected": "duplicate",
+      "actual": "duplicate"
+    },
+    {
+      "name": "exactly one event row",
+      "ok": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "entitlements as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "licences as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "name": "successful deliveries as expected",
+      "ok": true,
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "detail": {
+    "first_verified": true,
+    "second_duplicate": true,
+    "revenue_event_rows": 1
+  },
+  "generated_at": "2026-10-24T03:18:55.193Z",
+  "boundary": {
+    "synthetic_customer_domain": "example.invalid",
+    "transport": "capture only (no email sent)",
+    "network": "none",
+    "source_database_opened_for_writing": false
+  },
+  "state": {
+    "counts": {
+      "revenue_events": 1,
+      "entitlements": 0,
+      "licenses": 0,
+      "deliveries": 0,
+      "successful_deliveries": 0,
+      "failed_deliveries": 0,
+      "fulfillment_runs": 0,
+      "customers": 0,
+      "evidence": 2
+    },
+    "revenue_events": [
+      {
+        "event_id": "evt_9e30ca32-e736-4041-9f35-fc03dd800f8e",
+        "provider": "stripe",
+        "provider_event_id": "evt_synthetic_dup_1",
+        "event_type": "checkout.session.completed",
+        "customer_email": "synthetic.buyer.a@example.invalid",
+        "provider_customer_id": "cus_synthetic_s03",
+        "product_id": "skill_pack_lite",
+        "price_reference": "price_SYNTHETIC_EXPERIMENT_LITE",
+        "payment_reference": null,
+        "amount": 4900,
+        "currency": "usd",
+        "verification_status": "verified",
+        "processing_status": "pending",
+        "idempotency_key": "re_evt_ba2e7631fe69e1ee3856c5616a68ac40a00e8a5f00d5ecd4449b45dba42ec618",
+        "raw_payload_hash": "f86ca2afb756b43ad1d295dedad816ba822b0258029b9541c25f510882854538",
+        "source_mode": "webhook",
+        "payload_json": "{\"provider_event_id\":\"evt_synthetic_dup_1\",\"event_type\":\"checkout.session.completed\",\"session\":{\"kind\":\"checkout_session\",\"present\":true,\"id\":\"cs_synthetic_s03\",\"object\":\"checkout.session\",\"status\":\"complete\",\"payment_status\":\"paid\",\"amount_total\":4900,\"currency\":\"usd\",\"mode\":\"payment\",\"customer\":\"cus_synthetic_s03\",\"subscription\":null,\"payment_intent\":null,\"client_reference_id\":null,\"customer_email\":\"synthetic.buyer.a@example.invalid\",\"created\":1767225600,\"line_item_price_ids\":[\"price_SYNTHETIC_EXPERIMENT_LITE\"]},\"object\":null}"
+      }
+    ],
+    "entitlements": [],
+    "licenses": [],
+    "deliveries": [],
+    "fulfillment_runs": [],
+    "evidence": [
+      {
+        "id": "evd_0976df5f-0302-4a8e-8c5c-49cbdac81e04",
+        "kind": "webhook.accepted",
+        "subject_id": "evt_9e30ca32-e736-4041-9f35-fc03dd800f8e",
+        "payload_json": "{\"provider_event_id\":\"evt_synthetic_dup_1\",\"event_type\":\"checkout.session.completed\",\"verification_status\":\"verified\"}",
+        "source_fingerprint": "f86ca2afb756b43ad1d295dedad816ba822b0258029b9541c25f510882854538"
+      },
+      {
+        "id": "evd_b7a07927-c27c-4927-9bc4-9b81602c8a4d",
+        "kind": "webhook.duplicate",
+        "subject_id": "evt_9e30ca32-e736-4041-9f35-fc03dd800f8e",
+        "payload_json": "{\"provider_event_id\":\"evt_synthetic_dup_1\"}",
+        "source_fingerprint": "f86ca2afb756b43ad1d295dedad816ba822b0258029b9541c25f510882854538"
+      }
+    ]
+  }
+}
